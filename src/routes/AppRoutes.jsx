@@ -71,25 +71,26 @@ function AppRouterTree() {
       </Route>
 
       {/* ── Citizen routes (MainLayout + citizen guard) ── */}
-      <Route element={<MainLayout />}>
+      <Route element={<CitizenLayout />}>
           <Route path="/file-complaint" element={<RegisterComplaint />} />
           <Route path="/citizen/dashboard" element={<CitizenDashboard />} />
           <Route path="/complaint/:id" element={<ComplaintDetails />} />
+          <Route path="/profile" element={<Profile />} />
       </Route>
       <Route element={<RequireCitizen />}>
         <Route element={<CitizenLayout />}>
-          <Route path="/profile" element={<Profile />} />
         </Route>
       </Route>
 
       {/* ── Officer routes (MainLayout + officer guard) ── */}
-      <Route element={<RequireOfficer />}>
-        <Route element={<MainLayout />}>
+      <Route element={<MainLayout />}>
           <Route path="/officer/dashboard" element={<OfficerDashboard />} />
           <Route path="/officer/queue" element={<ComplaintQueue />} />
           <Route path="/officer/review/:id" element={<ComplaintReview />} />
           <Route path="/officer/analytics" element={<Analytics />} />
         </Route>
+      <Route element={<RequireOfficer />}>
+        
       </Route>
 
       {/* ── 404 ── */}

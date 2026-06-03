@@ -230,20 +230,20 @@ function FileChip({ file, onRemove }) {
   const preview = isImage ? URL.createObjectURL(file) : null;
 
   return (
-    <div className="flex items-center gap-2 px-3 py-2 bg-neutral-50 border border-black/[0.08] rounded-xl group relative overflow-hidden">
+    <div className="flex items-center gap-2 px-3 py-2 bg-neutral-50 border border-black/8 rounded-xl group relative overflow-hidden">
       {preview ? (
         <img
           src={preview}
           alt=""
-          className="w-8 h-8 object-cover rounded-lg flex-shrink-0"
+          className="w-8 h-8 object-cover rounded-lg shrink-0"
         />
       ) : (
-        <div className="w-8 h-8 rounded-lg bg-black/[0.06] flex items-center justify-center flex-shrink-0 text-neutral-400">
+        <div className="w-8 h-8 rounded-lg bg-black/6 flex items-center justify-center shrink-0 text-neutral-400">
           {isVideo ? <VideoIcon /> : <FileTextIcon />}
         </div>
       )}
       <div className="min-w-0">
-        <p className="text-[11px] font-medium text-black truncate max-w-[110px]">
+        <p className="text-[11px] font-medium text-black truncate max-w-27.5">
           {file.name}
         </p>
         <p className="text-[10px] text-neutral-400">
@@ -311,7 +311,7 @@ function EvidenceMeter({ score, breakdown }) {
           {breakdown.map((b, i) => (
             <span
               key={i}
-              className="text-[10px] px-2 py-0.5 bg-white border border-black/[0.08] rounded-full text-neutral-600 font-medium"
+              className="text-[10px] px-2 py-0.5 bg-white border border-black/8 rounded-full text-neutral-600 font-medium"
             >
               +{b.pts} {b.label}
             </span>
@@ -439,7 +439,7 @@ function SuccessPage({ result, onGoToDashboard }) {
       {/* Info grid */}
       <div className="w-full max-w-md grid grid-cols-1 gap-3 mb-5 z-30">
         <div className="flex items-center gap-3 p-4 bg-neutral-50 border border-black/[0.07] rounded-2xl">
-          <div className="w-9 h-9 rounded-xl bg-blue-50 flex items-center justify-center text-blue-500 flex-shrink-0">
+          <div className="w-9 h-9 rounded-xl bg-blue-50 flex items-center justify-center text-blue-500 shrink-0">
             <BuildingIcon />
           </div>
           <div className="z-30">
@@ -454,7 +454,7 @@ function SuccessPage({ result, onGoToDashboard }) {
 
         <div className="flex items-center gap-3 p-4 bg-neutral-50 border border-black/[0.07] rounded-2xl">
           <div
-            className="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0"
+            className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0"
             style={{ background: scoreColor + "15", color: scoreColor }}
           >
             <SparklesIcon />
@@ -496,7 +496,7 @@ function SuccessPage({ result, onGoToDashboard }) {
         </button>
         <button
           onClick={() => window.location.reload()}
-          className="w-full py-3.5 border border-black/[0.1] text-black rounded-2xl text-sm font-medium
+          className="w-full py-3.5 border border-black/10 text-black rounded-2xl text-sm font-medium
           hover:bg-neutral-50 transition-all duration-200 cursor-pointer bg-white"
         >
           File Another Complaint
@@ -684,7 +684,7 @@ export default function RegisterComplaint() {
           </div>
           {/* Mini evidence score badge */}
           {step >= 1 && (
-            <div className="flex items-center gap-1.5 px-3 py-1.5 bg-neutral-50 border border-black/[0.08] rounded-full">
+            <div className="flex items-center gap-1.5 px-3 py-1.5 bg-neutral-50 border border-black/8 rounded-full">
               <SparklesIcon />
               <span className="text-xs font-semibold text-black">
                 {evScore}
@@ -719,7 +719,7 @@ export default function RegisterComplaint() {
                     ${
                       form.category === cat.id
                         ? "bg-black border-black text-white shadow-[0_4px_14px_rgba(0,0,0,0.15)]"
-                        : "bg-white border-black/[0.1] hover:border-black/30 hover:bg-neutral-50"
+                        : "bg-white border-black/10 hover:border-black/30 hover:bg-neutral-50"
                     }`}
                 >
                   <span className="text-2xl mb-2">{cat.icon}</span>
@@ -775,7 +775,7 @@ export default function RegisterComplaint() {
                 placeholder="e.g. Broken road near main market, ward 5"
                 className={`w-full px-4 py-3 rounded-xl border text-sm bg-white text-black placeholder:text-neutral-300
                   focus:outline-none focus:ring-2 focus:ring-black/10 focus:border-black transition-all
-                  ${errors.title ? "border-red-300" : "border-black/[0.12]"}`}
+                  ${errors.title ? "border-red-300" : "border-black/[12"}`}
               />
               {errors.title && (
                 <p className="mt-1 text-xs text-red-500">{errors.title}</p>
@@ -796,7 +796,7 @@ export default function RegisterComplaint() {
                 placeholder="Describe the issue in detail — when did it start, how severe is it, who is affected, any previous complaints filed..."
                 className={`w-full px-4 py-3 rounded-xl border text-sm bg-white text-black placeholder:text-neutral-300
                   focus:outline-none focus:ring-2 focus:ring-black/10 focus:border-black transition-all resize-none
-                  ${errors.description ? "border-red-300" : "border-black/[0.12]"}`}
+                  ${errors.description ? "border-red-300" : "border-black/12"}`}
               />
               {errors.description && (
                 <p className="mt-1 text-xs text-red-500">
@@ -824,7 +824,7 @@ export default function RegisterComplaint() {
                               : s === "Moderate"
                                 ? "bg-yellow-500 border-yellow-500 text-white"
                                 : "bg-green-500 border-green-500 text-white"
-                          : "bg-white border-black/[0.1] text-neutral-600 hover:border-black/20"
+                          : "bg-white border-black/10 text-neutral-600 hover:border-black/20"
                       }`}
                   >
                     {s}
@@ -848,13 +848,13 @@ export default function RegisterComplaint() {
                     })
                   }
                   placeholder="Enter address manually or use GPS"
-                  className="flex-1 px-4 py-3 rounded-xl border border-black/[0.12] text-sm bg-white text-black
+                  className="flex-1 px-4 py-3 rounded-xl border border-black/12 text-sm bg-white text-black
                     placeholder:text-neutral-300 focus:outline-none focus:ring-2 focus:ring-black/10 focus:border-black"
                 />
                 <button
                   onClick={getLocation}
                   disabled={isLocating}
-                  className="px-4 py-2 rounded-xl border border-black/[0.12] bg-white text-black hover:bg-neutral-50
+                  className="px-4 py-2 rounded-xl border border-black/12 bg-white text-black hover:bg-neutral-50
                     text-xs font-medium flex items-center gap-1.5 transition-all cursor-pointer disabled:opacity-50 whitespace-nowrap"
                 >
                   {isLocating ? (
@@ -883,7 +883,7 @@ export default function RegisterComplaint() {
                 value={form.contactPhone}
                 onChange={(e) => update("contactPhone", e.target.value)}
                 placeholder="+91 XXXXX XXXXX"
-                className="w-full px-4 py-3 rounded-xl border border-black/[0.12] text-sm bg-white text-black
+                className="w-full px-4 py-3 rounded-xl border border-black/12 text-sm bg-white text-black
                   placeholder:text-neutral-300 focus:outline-none focus:ring-2 focus:ring-black/10 focus:border-black"
               />
             </div>
@@ -927,7 +927,7 @@ export default function RegisterComplaint() {
               onDragOver={(e) => e.preventDefault()}
               onDrop={onDrop}
               onClick={() => fileInputRef.current?.click()}
-              className="border-2 border-dashed border-black/[0.12] rounded-2xl p-8 text-center cursor-pointer
+              className="border-2 border-dashed border-black/12 rounded-2xl p-8 text-center cursor-pointer
                 hover:border-black/30 hover:bg-neutral-50 transition-all group"
             >
               <input
@@ -980,7 +980,7 @@ export default function RegisterComplaint() {
                     i.onchange = (e) => handleFiles(e.target.files);
                     i.click();
                   }}
-                  className="flex-1 flex flex-col items-center gap-1.5 py-3 px-2 rounded-xl border border-black/[0.1]
+                  className="flex-1 flex flex-col items-center gap-1.5 py-3 px-2 rounded-xl border border-black/10
                     text-neutral-600 hover:border-black/30 hover:text-black transition-all cursor-pointer bg-white text-xs font-medium"
                 >
                   {icon}
@@ -1017,7 +1017,7 @@ export default function RegisterComplaint() {
               </p>
             </div>
 
-            <div className="border border-black/[0.08] rounded-2xl overflow-hidden">
+            <div className="border border-black/8 rounded-2xl overflow-hidden">
               <div className="px-5 py-4 border-b border-black/[0.07] flex items-center gap-3">
                 <span className="text-2xl">{selectedCat?.icon}</span>
                 <div>
@@ -1082,7 +1082,7 @@ export default function RegisterComplaint() {
                     {form.files.map((f) => (
                       <span
                         key={f.name}
-                        className="text-[10px] px-2 py-0.5 bg-neutral-100 rounded-full text-neutral-600 truncate max-w-[140px]"
+                        className="text-[10px] px-2 py-0.5 bg-neutral-100 rounded-full text-neutral-600 truncate max-w-35"
                       >
                         {f.name}
                       </span>
@@ -1114,7 +1114,7 @@ export default function RegisterComplaint() {
             {step > 0 && (
               <button
                 onClick={prevStep}
-                className="px-5 py-3 rounded-xl border border-black/[0.1] text-sm font-medium text-neutral-600
+                className="px-5 py-3 rounded-xl border border-black/10 text-sm font-medium text-neutral-600
                   hover:text-black hover:border-black/20 transition-all cursor-pointer bg-white"
               >
                 ← Back
