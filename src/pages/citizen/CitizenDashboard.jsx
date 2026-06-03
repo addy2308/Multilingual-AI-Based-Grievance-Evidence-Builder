@@ -1,5 +1,6 @@
 import { useState, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
+import Footer from "../../components/common/Footer";
 
 // ─── Mock Data ────────────────────────────────────────────────────────────────
 const MOCK_CITIZEN = {
@@ -133,11 +134,11 @@ const MOCK_COMPLAINTS = [
 ];
 
 const HEATMAP_DATA = [
-  [0,1,0,2,1,0,0],
-  [1,0,2,1,0,1,0],
-  [0,2,1,0,3,1,0],
-  [1,0,0,1,0,2,1],
-  [0,1,2,0,1,0,0],
+  [0, 1, 0, 2, 1, 0, 0],
+  [1, 0, 2, 1, 0, 1, 0],
+  [0, 2, 1, 0, 3, 1, 0],
+  [1, 0, 0, 1, 0, 2, 1],
+  [0, 1, 2, 0, 1, 0, 0],
 ];
 
 const AI_INSIGHTS = [
@@ -322,7 +323,7 @@ function SLABanner({ complaints }) {
   return (
     <div className="rounded-2xl overflow-hidden" style={{ border: "1.5px solid #FCA5A5", background: "#FFF5F5" }}>
       <div className="px-4 py-3 flex items-center gap-3" style={{ background: "#FEE2E2", borderBottom: "1px solid #FCA5A5" }}>
-        <div className="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0" style={{ background: "#FCA5A5", color: "#B91C1C" }}>
+        <div className="w-7 h-7 rounded-lg flex items-center justify-center shrink-0" style={{ background: "#FCA5A5", color: "#B91C1C" }}>
           <IAlert />
         </div>
         <p className="text-xs font-black" style={{ color: "#B91C1C" }}>
@@ -336,14 +337,14 @@ function SLABanner({ complaints }) {
       <div className="p-3 grid sm:grid-cols-2 gap-2">
         {atRisk.map(c => (
           <div key={c.id} className="flex items-center gap-3 px-3 py-2.5 rounded-xl" style={{ background: "white", border: "1px solid #FCA5A5" }}>
-            <div className="flex-shrink-0 w-8 h-8 rounded-lg flex items-center justify-center" style={{ background: c.slaDays <= 2 ? "#FEE2E2" : "#FEF3C7" }}>
+            <div className="shrink-0 w-8 h-8 rounded-lg flex items-center justify-center" style={{ background: c.slaDays <= 2 ? "#FEE2E2" : "#FEF3C7" }}>
               <ITimer s={14} />
             </div>
             <div className="flex-1 min-w-0">
               <p className="text-xs font-bold truncate" style={{ color: "#000000" }}>{c.title}</p>
               <p className="text-[10px]" style={{ color: "#8892A4" }}>{c.dept} · {c.id}</p>
             </div>
-            <span className="text-xs font-black flex-shrink-0 px-2 py-1 rounded-lg" style={{ background: c.slaDays <= 2 ? "#FEE2E2" : "#FEF3C7", color: c.slaDays <= 2 ? "#B91C1C" : "#B45309" }}>
+            <span className="text-xs font-black shrink-0 px-2 py-1 rounded-lg" style={{ background: c.slaDays <= 2 ? "#FEE2E2" : "#FEF3C7", color: c.slaDays <= 2 ? "#B91C1C" : "#B45309" }}>
               {c.slaDays}d left
             </span>
           </div>
@@ -369,7 +370,7 @@ function ActivityHeatmap({ data }) {
       <div className="space-y-1">
         {data.map((row, wi) => (
           <div key={wi} className="flex items-center gap-1">
-            <span className="text-[9px] font-bold w-6 text-right flex-shrink-0" style={{ color: "#B0B8C9" }}>{weeks[wi]}</span>
+            <span className="text-[9px] font-bold w-6 text-right shrink-0" style={{ color: "#B0B8C9" }}>{weeks[wi]}</span>
             {row.map((val, di) => (
               <div
                 key={di}
@@ -399,10 +400,10 @@ function WardRankRing({ rank, total, percentile }) {
   const filled = (percentile / 100) * circ;
   return (
     <div className="flex items-center gap-4">
-      <div className="relative flex-shrink-0" style={{ width: size, height: size }}>
+      <div className="relative shrink-0" style={{ width: size, height: size }}>
         <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`} style={{ transform: "rotate(-90deg)" }}>
-          <circle cx={size/2} cy={size/2} r={r} fill="none" stroke="#F0F3FA" strokeWidth={thick} />
-          <circle cx={size/2} cy={size/2} r={r} fill="none" stroke="#000000" strokeWidth={thick}
+          <circle cx={size / 2} cy={size / 2} r={r} fill="none" stroke="#F0F3FA" strokeWidth={thick} />
+          <circle cx={size / 2} cy={size / 2} r={r} fill="none" stroke="#000000" strokeWidth={thick}
             strokeDasharray={`${filled} ${circ}`} strokeLinecap="round" />
         </svg>
         <div className="absolute inset-0 flex flex-col items-center justify-center">
@@ -426,12 +427,12 @@ function WardRankRing({ rank, total, percentile }) {
 function AIInsightCard({ insight }) {
   return (
     <div className="p-3.5 rounded-xl flex items-start gap-3 cursor-pointer insight-card" style={{ background: insight.bg, border: `1px solid ${insight.color}22` }}>
-      <div className="text-base flex-shrink-0 mt-0.5">{insight.icon}</div>
+      <div className="text-base shrink-0 mt-0.5">{insight.icon}</div>
       <div className="flex-1 min-w-0">
         <p className="text-xs font-black mb-0.5" style={{ color: "#000000" }}>{insight.title}</p>
         <p className="text-[11px] leading-relaxed" style={{ color: "#6B7280" }}>{insight.body}</p>
       </div>
-      <div className="flex-shrink-0 mt-0.5">
+      <div className="shrink-0 mt-0.5">
         <span className="text-[10px] font-bold flex items-center gap-1" style={{ color: insight.color }}>
           {insight.action} <IArrowR />
         </span>
@@ -444,9 +445,9 @@ function AIInsightCard({ insight }) {
 function QuickActions({ onNavigate }) {
   const actions = [
     { icon: <IPlus />, label: "New Complaint", sub: "File grievance", onClick: () => onNavigate("/file-complaint"), primary: true },
-    { icon: <IRefresh s={16} />, label: "Track Status", sub: "Check all active", onClick: () => {} },
-    { icon: <IShare s={16} />, label: "Export Report", sub: "Download PDF", onClick: () => {} },
-    { icon: <IMap />, label: "Ward Map", sub: "View hotspots", onClick: () => {} },
+    { icon: <IRefresh s={16} />, label: "Track Status", sub: "Check all active", onClick: () => { } },
+    { icon: <IShare s={16} />, label: "Export Report", sub: "Download PDF", onClick: () => { } },
+    { icon: <IMap />, label: "Ward Map", sub: "View hotspots", onClick: () => { } },
   ];
   return (
     <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
@@ -477,17 +478,17 @@ function CRow({ c, onView }) {
   const isCritical = c.severity === "Critical" || c.severity === "Severe";
   return (
     <div className="c-row flex items-center gap-3 px-4 py-3.5 cursor-pointer" onClick={() => onView(c)}>
-      <div className="w-9 h-9 rounded-xl flex items-center justify-center text-base flex-shrink-0 c-icon">
+      <div className="w-9 h-9 rounded-xl flex items-center justify-center text-base shrink-0 c-icon">
         {CAT_ICON[c.category] || "📋"}
       </div>
       <div className="flex-1 min-w-0">
         <div className="flex items-center gap-2 mb-1 flex-wrap">
           <p className="text-sm font-bold truncate c-title">{c.title}</p>
           {isCritical && (
-            <span className="text-[10px] px-2 py-0.5 rounded-md font-bold flex-shrink-0" style={{ background: sv.bg, color: sv.color }}>{c.severity}</span>
+            <span className="text-[10px] px-2 py-0.5 rounded-md font-bold shrink-0" style={{ background: sv.bg, color: sv.color }}>{c.severity}</span>
           )}
           {c.slaDays !== null && c.slaDays <= 7 && c.status !== "Resolved" && (
-            <span className="text-[10px] px-2 py-0.5 rounded-md font-bold flex-shrink-0" style={{ background: c.slaDays <= 2 ? "#FEE2E2" : "#FEF3C7", color: c.slaDays <= 2 ? "#B91C1C" : "#B45309" }}>
+            <span className="text-[10px] px-2 py-0.5 rounded-md font-bold shrink-0" style={{ background: c.slaDays <= 2 ? "#FEE2E2" : "#FEF3C7", color: c.slaDays <= 2 ? "#B91C1C" : "#B45309" }}>
               {c.slaDays}d SLA
             </span>
           )}
@@ -498,7 +499,7 @@ function CRow({ c, onView }) {
           <span className="hidden sm:inline-flex text-[11px] items-center gap-1 c-meta"><IBuilding s={11} /> {c.dept}</span>
         </div>
       </div>
-      <div className="flex items-center gap-2 flex-shrink-0">
+      <div className="flex items-center gap-2 shrink-0">
         <span className="hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-full text-[11px] font-bold" style={{ background: st.bg, color: st.color }}>
           <span className="w-1.5 h-1.5 rounded-full" style={{ background: st.dot }} />
           {c.status}
@@ -528,23 +529,23 @@ function DetailDrawer({ complaint, onClose, onNavigate }) {
     <div className="fixed inset-0 z-50 flex justify-end" onClick={onClose}>
       <div className="absolute inset-0" style={{ background: "rgba(0,0,0,0.28)", backdropFilter: "blur(4px)" }} />
       <div className="drawer relative w-full max-w-md h-full flex flex-col overflow-hidden" onClick={(e) => e.stopPropagation()} style={{ background: "#F7F6F2" }}>
-        <div className="flex-shrink-0 px-5 py-4 flex items-center gap-3" style={{ background: "white", borderBottom: "1.5px solid #F0F3FA" }}>
-          <div className="w-9 h-9 rounded-xl flex items-center justify-center text-base flex-shrink-0" style={{ background: "#F0F3FA" }}>{CAT_ICON[complaint.category] || "📋"}</div>
+        <div className="shrink-0 px-5 py-4 flex items-center gap-3" style={{ background: "white", borderBottom: "1.5px solid #F0F3FA" }}>
+          <div className="w-9 h-9 rounded-xl flex items-center justify-center text-base shrink-0" style={{ background: "#F0F3FA" }}>{CAT_ICON[complaint.category] || "📋"}</div>
           <div className="flex-1 min-w-0">
             <p className="text-sm font-bold truncate" style={{ color: "#000000" }}>{complaint.title}</p>
             <p className="text-[10px] font-mono" style={{ color: "#8892A4" }}>{complaint.id}</p>
           </div>
-          <span className="hidden sm:flex items-center gap-1.5 px-2.5 py-1.5 rounded-full text-[11px] font-bold flex-shrink-0" style={{ background: st.bg, color: st.color }}>
+          <span className="hidden sm:flex items-center gap-1.5 px-2.5 py-1.5 rounded-full text-[11px] font-bold shrink-0" style={{ background: st.bg, color: st.color }}>
             <span className="w-1.5 h-1.5 rounded-full" style={{ background: st.dot }} />{complaint.status}
           </span>
-          <button onClick={onClose} className="w-8 h-8 rounded-xl flex items-center justify-center cursor-pointer border-none flex-shrink-0" style={{ background: "#F0F3FA", color: "#6B7280" }}><IX /></button>
+          <button onClick={onClose} className="w-8 h-8 rounded-xl flex items-center justify-center cursor-pointer border-none shrink-0" style={{ background: "#F0F3FA", color: "#6B7280" }}><IX /></button>
         </div>
         <div className="flex-1 overflow-y-auto px-5 py-5 space-y-4">
           <div className="flex gap-3">
             <div className="flex-1 p-3.5 rounded-xl flex flex-col gap-1" style={{ background: st.bg }}>
               <p className="text-[9px] font-black uppercase tracking-wider" style={{ color: st.color + "99" }}>Status</p>
               <div className="flex items-center gap-1.5">
-                <span className="w-2 h-2 rounded-full flex-shrink-0" style={{ background: st.dot }} />
+                <span className="w-2 h-2 rounded-full shrink-0" style={{ background: st.dot }} />
                 <span className="text-sm font-black" style={{ color: st.color }}>{complaint.status}</span>
               </div>
             </div>
@@ -562,7 +563,7 @@ function DetailDrawer({ complaint, onClose, onNavigate }) {
           <div className="p-4 rounded-xl" style={{ background: "white", border: "1.5px solid #E4E8F0" }}>
             <div className="flex items-center justify-between mb-3">
               <div className="flex items-center gap-2">
-                <div className="w-6 h-6 rounded-lg flex items-center justify-center flex-shrink-0" style={{ background: "#F0F3FA", color: "#000000" }}><ISparkle s={12} /></div>
+                <div className="w-6 h-6 rounded-lg flex items-center justify-center shrink-0" style={{ background: "#F0F3FA", color: "#000000" }}><ISparkle s={12} /></div>
                 <span className="text-[10px] font-black uppercase tracking-wider" style={{ color: "#8892A4" }}>Evidence Score</span>
               </div>
               <span className="text-xl font-black" style={{ color: "#000000", fontFamily: "'DM Serif Display', serif" }}>
@@ -583,7 +584,7 @@ function DetailDrawer({ complaint, onClose, onNavigate }) {
             <p className="text-[10px] font-black uppercase tracking-wider" style={{ color: "#8892A4" }}>Details</p>
             {[{ icon: <IBuilding s={13} />, label: "Department", val: complaint.dept }, { icon: <IPin s={13} />, label: "Location", val: complaint.location }, { icon: <IClock s={13} />, label: "Filed", val: fmtDate(complaint.createdAt) }, { icon: <IClock s={13} />, label: "Updated", val: fmtDate(complaint.updatedAt) }].map(({ icon, label, val }) => (
               <div key={label} className="flex items-start gap-3">
-                <div className="w-6 h-6 rounded-md flex items-center justify-center flex-shrink-0 mt-0.5" style={{ background: "#F0F3FA", color: "#6B7280" }}>{icon}</div>
+                <div className="w-6 h-6 rounded-md flex items-center justify-center shrink-0 mt-0.5" style={{ background: "#F0F3FA", color: "#6B7280" }}>{icon}</div>
                 <div>
                   <p className="text-[9px] font-black uppercase tracking-wider" style={{ color: "#B0B8C9" }}>{label}</p>
                   <p className="text-xs font-semibold" style={{ color: "#000000" }}>{val}</p>
@@ -629,7 +630,7 @@ function DetailDrawer({ complaint, onClose, onNavigate }) {
                       <div className="flex-1 pb-1">
                         <div className="flex items-start justify-between gap-2">
                           <p className="text-xs font-semibold" style={{ color: "#000000" }}>{u.msg}</p>
-                          <span className="text-[10px] flex-shrink-0" style={{ color: "#8892A4" }}>{u.date}</span>
+                          <span className="text-[10px] shrink-0" style={{ color: "#8892A4" }}>{u.date}</span>
                         </div>
                         <p className="text-[10px] mt-0.5" style={{ color: "#B0B8C9" }}>By {u.by}</p>
                       </div>
@@ -641,7 +642,7 @@ function DetailDrawer({ complaint, onClose, onNavigate }) {
           )}
           {complaint.status === "Pending" && (
             <div className="p-4 rounded-xl flex items-start gap-3" style={{ background: "#FFFBEB", border: "1.5px solid #FDE68A" }}>
-              <div className="w-8 h-8 rounded-xl flex items-center justify-center flex-shrink-0" style={{ background: "#FEF3C7", color: "#B45309" }}><IAlert /></div>
+              <div className="w-8 h-8 rounded-xl flex items-center justify-center shrink-0" style={{ background: "#FEF3C7", color: "#B45309" }}><IAlert /></div>
               <div>
                 <p className="text-xs font-black" style={{ color: "#000000" }}>Awaiting acknowledgement</p>
                 <p className="text-[11px] mt-0.5" style={{ color: "#8892A4" }}>Your complaint is in the review queue. Departments typically respond within 48 hours.</p>
@@ -650,7 +651,7 @@ function DetailDrawer({ complaint, onClose, onNavigate }) {
           )}
           <div className="h-2" />
         </div>
-        <div className="flex-shrink-0 px-5 py-4" style={{ background: "white", borderTop: "1.5px solid #F0F3FA" }}>
+        <div className="shrink-0 px-5 py-4" style={{ background: "white", borderTop: "1.5px solid #F0F3FA" }}>
           <button onClick={() => { onClose(); onNavigate(`/complaint/${complaint.id}`); }} className="w-full flex items-center justify-center gap-2 py-3 rounded-xl font-bold text-sm transition-all cursor-pointer border-none" style={{ background: "#000000", color: "white" }}>
             View Full Details <IArrowR />
           </button>
@@ -870,7 +871,7 @@ export default function CitizenDashboard() {
             <div className="chart-card flex-1">
               <p className="text-[10px] font-black uppercase tracking-wider mb-3" style={{ color: "#8892A4" }}>Status Overview</p>
               <div className="flex items-center justify-around gap-4">
-                <div className="relative flex-shrink-0">
+                <div className="relative shrink-0">
                   <Donut data={donutData} size={100} thick={12} />
                   <div className="absolute inset-0 flex flex-col items-center justify-center">
                     <span className="text-2xl font-black" style={{ color: "#000000", fontFamily: "'DM Serif Display',serif" }}>{stats.total}</span>
@@ -880,7 +881,7 @@ export default function CitizenDashboard() {
                 <div className="space-y-2">
                   {donutData.map((s) => (
                     <div key={s.label} className="flex items-center gap-2">
-                      <div className="w-2.5 h-2.5 rounded-full flex-shrink-0" style={{ background: s.color }} />
+                      <div className="w-2.5 h-2.5 rounded-full shrink-0" style={{ background: s.color }} />
                       <span className="text-xs font-semibold" style={{ color: "#4A5568" }}>{s.label}</span>
                       <span className="text-xs font-black ml-auto pl-4" style={{ color: "#000000" }}>{s.value}</span>
                     </div>
@@ -1037,7 +1038,7 @@ export default function CitizenDashboard() {
                 <p className="text-[10px] mt-2 font-semibold" style={{ color: "#1A7F5A" }}>↓ 50% faster over 7 complaints</p>
               </div>
               <div className="p-4 rounded-2xl flex items-center gap-4" style={{ background: "#F0F3FA", border: "1.5px solid #E4E8F0" }}>
-                <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style={{ background: "#000000", color: "white" }}><ITrend /></div>
+                <div className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0" style={{ background: "#000000", color: "white" }}><ITrend /></div>
                 <div>
                   <p className="text-sm font-black" style={{ color: "#000000" }}>Complaints resolve <span style={{ textDecoration: "underline" }}>32% faster</span> with high evidence scores</p>
                   <p className="text-xs mt-0.5" style={{ color: "#8892A4" }}>Attach GPS location and photos when filing to boost your score and speed up resolution.</p>
@@ -1051,6 +1052,7 @@ export default function CitizenDashboard() {
       </div>
 
       {drawer && <DetailDrawer complaint={drawer} onClose={() => setDrawer(null)} onNavigate={(path) => navigate(path)} />}
+    <Footer/>
     </div>
   );
 }

@@ -232,7 +232,7 @@ export default function HeroSection() {
               onClick={() => go("/track", "/login")}
               className="inline-flex items-center justify-between px-5 py-4
                 bg-transparent text-black text-sm font-medium rounded-xl
-                border border-black/[0.12] hover:border-black/30
+                border border-black/12 hover:border-black/30
                 transition-colors duration-150 cursor-pointer w-full"
             >
               Track My Complaint
